@@ -1,11 +1,14 @@
 FROM quay.io/projectquay/golang:1.20 as builder
 WORKDIR /go/src/app
-COPY .src .
-RUN go get -d -v .
-RUN export GOPATH=/go
-RUN CGO_ENABLED=0 GOOS=linux go build -o app -a -installsuffix cgo
+
+ARG build_type
+ENV build_type $build_type
+
+COPY . .
+RUN make $build_type
 
 FROM scratch
 WORKDIR /
-COPY --from=builder /go/src/app/app .
-ENTRYPOINT ["/app"]
+COPY --from=builder /go/src/app .
+COPY --from=alpine:latest /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+ENTRYPOINT ["/kbot"]
