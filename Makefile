@@ -50,6 +50,9 @@ windows:
 # Building the image
 ###############################################################################	
 
+image: 
+	docker build . -t $(IMAGE_NAME)  --build-arg build_type=linux
+
 image-linux: 
 	docker build . -t $(IMAGE_NAME):linux-arm64  --build-arg build_type=linux
 
@@ -85,8 +88,8 @@ push-windows:
 ###############################################################################		
 
 clean:
-	go clean
 	rm -rf $(APP_NAME)		
+	docker rmi -f $(IMAGE_NAME)
 
 clean-linux: clean	
 	docker rmi -f $(IMAGE_NAME):linux-arm64
