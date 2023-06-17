@@ -34,7 +34,7 @@ run:
 ###############################################################################
 
 linux:
-	TARGET_OS=linux TARGET_ARCH=arm64 make build
+	TARGET_OS=linux TARGET_ARCH=amd64 make build
 
 arm:
 	TARGET_ARCH=arm TARGET_ARCH=arm64 make build
