@@ -71,13 +71,13 @@ image-windows:
 ###############################################################################	
 
 push-linux: 
-	docker push $(TAG):linux-arm64	
+	docker push $(IMAGE_NAME):linux-arm64	
 
 push-arm: 
-	docker push $(TAG):arm-arm64	
+	docker push $(IMAGE_NAME):arm-arm64	
 
 push-macOS: 
-	docker push $(TAG):macOS-arm64	
+	docker push $(IMAGE_NAME):macOS-arm64	
 
 push-windows: 
 	docker push $(IMAGE_NAME):windows-x64
